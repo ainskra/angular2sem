@@ -1,0 +1,9 @@
+<div class="high-scores">
+    <h2>High Scores</h2>
+    <button (click)="sortScores()">Sort by Score {{ sortAscending ? 'Descending' : 'Ascending' }}</button>
+    <ul>
+      <li *ngFor="let score of highScores">
+        {{ score.name }} - {{ score.score }}
+      </li>
+    </ul>
+</div>

@@ -1,0 +1,29 @@
+.controls {
+    text-align: center;
+    margin-top: 5vh;
+}
+
+ngx-snake {
+    display: inline-block;
+}
+
+.game-info {
+    text-align: center;
+    font-size: 20px;
+    margin-bottom: 5vh;
+}
+
+  
+  ::ng-deep .high-contrast-palette ngx-snake ngx-snake-tile {
+    background: #000000;
+  }
+  
+  ::ng-deep .high-contrast-palette ngx-snake ngx-snake-tile.free div {
+    background: #000000;
+  }
+
+  ::ng-deep .high-contrast-palette ngx-snake ngx-snake-tile.head div, 
+  ::ng-deep .high-contrast-palette ngx-snake ngx-snake-tile.tail div,
+  ::ng-deep .high-contrast-palette ngx-snake ngx-snake-tile.body div  {
+    background: #ffea00;
+  }

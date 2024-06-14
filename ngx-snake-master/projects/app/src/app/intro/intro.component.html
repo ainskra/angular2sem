@@ -1,0 +1,34 @@
+<h1>Welcome to the Snake game!</h1>
+<form #introForm="ngForm" (ngSubmit)="startGame()">
+  <div>
+    <label for="nickname">Nickname:</label>
+    <input type="text" id="nickname" name="nickname" [(ngModel)]="nickname" #nicknameInput="ngModel" required minlength="5">
+    <div *ngIf="nicknameInput.invalid && (nicknameInput.dirty || nicknameInput.touched)">
+      <div *ngIf="nicknameInput.errors?.required">Nickname is required.</div>
+      <div *ngIf="nicknameInput.errors?.minlength">Nickname must be at least 5 characters long.</div>
+    </div>
+  </div>
+
+  <div>
+    <label for="authCode">Auth Code:</label>
+    <input type="text" id="authCode" name="authCode" [(ngModel)]="authCode" #authCodeInput="ngModel" required minlength="5">
+    <div *ngIf="authCodeInput.invalid && (authCodeInput.dirty || authCodeInput.touched)">
+      <div *ngIf="authCodeInput.errors?.required">Auth Code is required.</div>
+      <div *ngIf="authCodeInput.errors?.minlength">Auth Code must be at least 5 characters long.</div>
+    </div>
+  </div>
+
+  <div>
+    <label for="colorPalette">Select Color Palette:</label>
+    <select id="colorPalette" [(ngModel)]="colorPalette" name="colorPalette">
+      <option value="normal">Normal</option>
+      <option value="high-contrast">High Contrast</option>
+    </select>
+  </div>
+
+  <div [ngClass]="colorPalette + '-palette'">
+    <p>Your palette</p>
+  </div>
+
+  <button type="submit" [disabled]="introForm.invalid">Start Game</button>
+</form>

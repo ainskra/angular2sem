@@ -1,0 +1,26 @@
+.intro {
+    text-align: center;
+    margin-top: 50px;
+  
+    form {
+      display: inline-block;
+      margin-top: 20px;
+    }
+  
+    label {
+      margin-right: 10px;
+    }
+  
+    button {
+      margin-left: 10px;
+    }
+  }
+
+  .normal-palette p {
+    color: green;
+  }
+  
+  .high-contrast-palette p {
+    color: white;
+    background-color: black;
+  }

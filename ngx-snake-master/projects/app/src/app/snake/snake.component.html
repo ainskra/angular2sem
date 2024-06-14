@@ -1,0 +1,43 @@
+
+<h1>Welcome to the Snake game!</h1>
+<div class="game-info">
+    <div>Nickname: {{ nickname }}</div>
+    <p class="score-info">Score: <span id="score">0</span></p>
+    <p class="status-info">Status: <span id="status">ready</span></p>
+    <p class="time-info">Time in game: <span id="time">0</span></p>
+</div>
+
+<div [ngClass]="colorPalette + '-palette'">
+<ngx-snake #game (foodEaten)="onGrow()" (gameOver)="onGameOver()"></ngx-snake>
+</div>
+<table class="controls">
+    <tr>
+        <td><button (click)="start()">Start</button></td>
+        <td><button (click)="stop()">Stop</button></td>
+        <td><button (click)="reset()">Reset</button></td>
+        <td></td>
+    </tr>
+    <tr><td></td></tr>
+    <tr><td></td></tr>
+    <tr><td></td></tr>
+    <tr>
+        <td></td>
+        <td><button (click)="game.actionUp()">Up</button></td>
+    </tr>
+    <tr>
+        <td><button (click)="game.actionLeft()">Left</button></td>
+        <td></td>
+        <td><button (click)="game.actionRight()">Right</button></td>
+
+    </tr>
+    <tr>
+        <td></td>
+        <td><button (click)="game.actionDown()">Down</button></td>
+    </tr>
+    <tr style="height: 20px">
+        <td></td>
+    </tr>
+</table>
+<div>
+    <a routerLink="/high-scores">View High Scores</a>
+</div>
