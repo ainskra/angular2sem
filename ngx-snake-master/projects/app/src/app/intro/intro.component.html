@@ -1,32 +1,32 @@
 <h1>Welcome to the Snake game!</h1>
-<form #introForm="ngForm" (ngSubmit)="startGame()">
+<form [formGroup]="introForm" (ngSubmit)="startGame()">
   <div>
     <label for="nickname">Nickname:</label>
-    <input type="text" id="nickname" name="nickname" [(ngModel)]="nickname" #nicknameInput="ngModel" required minlength="5">
-    <div *ngIf="nicknameInput.invalid && (nicknameInput.dirty || nicknameInput.touched)">
-      <div *ngIf="nicknameInput.errors?.required">Nickname is required.</div>
-      <div *ngIf="nicknameInput.errors?.minlength">Nickname must be at least 5 characters long.</div>
+    <input type="text" id="nickname" formControlName="nickname">
+    <div *ngIf="introForm.get('nickname')!.invalid && (introForm.get('nickname')!.dirty || introForm.get('nickname')!.touched)">
+      <div *ngIf="introForm.get('nickname')!.errors?.required">Nickname is required.</div>
+      <div *ngIf="introForm.get('nickname')!.errors?.minlength">Nickname must be at least 5 characters long.</div>
     </div>
   </div>
 
   <div>
     <label for="authCode">Auth Code:</label>
-    <input type="text" id="authCode" name="authCode" [(ngModel)]="authCode" #authCodeInput="ngModel" required minlength="5">
-    <div *ngIf="authCodeInput.invalid && (authCodeInput.dirty || authCodeInput.touched)">
-      <div *ngIf="authCodeInput.errors?.required">Auth Code is required.</div>
-      <div *ngIf="authCodeInput.errors?.minlength">Auth Code must be at least 5 characters long.</div>
+    <input type="text" id="authCode" formControlName="authCode">
+    <div *ngIf="introForm.get('authCode')!.invalid && (introForm.get('authCode')!.dirty || introForm.get('authCode')!.touched)">
+      <div *ngIf="introForm.get('authCode')!.errors?.required">Auth Code is required.</div>
+      <div *ngIf="introForm.get('authCode')!.errors?.minlength">Auth Code must be at least 5 characters long.</div>
     </div>
   </div>
 
   <div>
     <label for="colorPalette">Select Color Palette:</label>
-    <select id="colorPalette" [(ngModel)]="colorPalette" name="colorPalette">
+    <select id="colorPalette" formControlName="colorPalette">
       <option value="normal">Normal</option>
       <option value="high-contrast">High Contrast</option>
     </select>
   </div>
 
-  <div [ngClass]="colorPalette + '-palette'">
+  <div [ngClass]="introForm.get('colorPalette')!.value + '-palette'">
     <p>Your palette</p>
   </div>
 

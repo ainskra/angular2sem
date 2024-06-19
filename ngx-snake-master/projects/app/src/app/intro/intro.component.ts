@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { PlayerDataService } from '../player-data.service';
 
 @Component({
@@ -7,17 +8,28 @@ import { PlayerDataService } from '../player-data.service';
   templateUrl: './intro.component.html',
   styleUrls: ['./intro.component.scss']
 })
-export class IntroComponent {
-  public nickname: string = '';
-  public authCode: string = '';
-  public colorPalette: string = 'normal';
+export class IntroComponent implements OnInit {
+  public introForm: FormGroup;
 
-  constructor(private router: Router, private playerDataService: PlayerDataService) {}
+  constructor(
+    private fb: FormBuilder,
+    private router: Router,
+    private playerDataService: PlayerDataService
+  ) {
+    this.introForm = this.fb.group({
+      nickname: ['', [Validators.required, Validators.minLength(5)]],
+      authCode: ['', [Validators.required, Validators.minLength(5)]],
+      colorPalette: ['normal']
+    });
+  }
+
+  ngOnInit(): void {}
 
   startGame() {
-    if (this.nickname.length >= 5 && this.authCode.length >= 5) {
-      this.playerDataService.setPlayerName(this.nickname);
-      this.router.navigate(['/game', this.colorPalette]);
+    if (this.introForm.valid) {
+      const { nickname, colorPalette } = this.introForm.value;
+      this.playerDataService.setPlayerName(nickname);
+      this.router.navigate(['/game', colorPalette]);
     }
   }
 
